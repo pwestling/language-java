@@ -572,8 +572,8 @@ opt x a = if x then a else empty
 
 braceBlock :: [Doc] -> Doc
 braceBlock xs = char '{'
-    <> text "\n" <> nest 2 (vcat xs)
-    <> text "\n" <> char '}'
+    $$ nest 2 (vcat xs)
+    $$ char '}'
 
 opPrec Mult    = 3
 opPrec Div     = 3
