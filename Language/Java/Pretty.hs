@@ -57,7 +57,7 @@ instance Pretty ClassDecl where
           , text "enum"
           , prettyPrec p ident 
           , ppImplements p impls
-         ] $$ prettyPrec p body
+         ] <+> prettyPrec p body
 
   prettyPrec p (ClassDecl mods ident tParams mSuper impls body) =
     hsep [hsep (map (prettyPrec p) mods)
@@ -66,7 +66,7 @@ instance Pretty ClassDecl where
           , ppTypeParams p tParams
           , ppExtends p (maybe [] return mSuper)
           , ppImplements p impls
-         ] $$ prettyPrec p body
+         ] <+> prettyPrec p body
 
 instance Pretty ClassBody where
   prettyPrec p (ClassBody ds) =
@@ -92,7 +92,7 @@ instance Pretty InterfaceDecl where
           , prettyPrec p ident
           , ppTypeParams p tParams
           , ppExtends p impls
-         ] $$ prettyPrec p body
+         ] <+> prettyPrec p body
 
 instance Pretty InterfaceBody where
   prettyPrec p (InterfaceBody mds) =
@@ -115,7 +115,7 @@ instance Pretty MemberDecl where
           , ppArgs p fParams
           , ppThrows p throws
           , ppDefault p def
-         ] $$ prettyPrec p body
+         ] <+> prettyPrec p body
 
   prettyPrec p (ConstructorDecl mods tParams ident fParams throws body) =
     hsep [hsep (map (prettyPrec p) mods)
@@ -123,7 +123,7 @@ instance Pretty MemberDecl where
           , prettyPrec p ident
           , ppArgs p fParams
           , ppThrows p throws
-         ] $$ prettyPrec p body
+         ] <+> prettyPrec p body
 
   prettyPrec p (MemberClassDecl cd) = prettyPrec p cd
   prettyPrec p (MemberInterfaceDecl id) = prettyPrec p id
